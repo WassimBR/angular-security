@@ -6,7 +6,7 @@ var fs = require('fs');
 var privateKey = fs.readFileSync('./demos/private.key');
 
 var payload = {
-  // name: 'Alice'
+  name: 'Alice'
 };
 
 

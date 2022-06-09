@@ -6,7 +6,7 @@ import {DbUser} from "./db-user";
 
 class InMemoryDatabase {
 
-    userCounter = 0;
+    userCounter = 2;
 
     readAllLessons() {
         return _.values(LESSONS);
@@ -29,7 +29,8 @@ class InMemoryDatabase {
         const user: DbUser = {
             id,
             email,
-            passwordDigest
+            passwordDigest,
+            roles: ["STUDENT"]
         };
 
         USERS[id] = user;
@@ -42,9 +43,15 @@ class InMemoryDatabase {
 
     findUserByEmail(email:string) :DbUser {
 
+        console.log("Finding user by email:", email);
+
         const users = _.values(USERS);
 
-        return _.find(users, user => user.email === email);
+        const user = _.find(users, user => user.email === email);
+
+        console.log("user retrieved:", user);
+
+        return user;
     }
 
     findUserById(userId:string) :DbUser {
